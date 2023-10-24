@@ -24,11 +24,6 @@ output "public_ip" {
 #3. The aws_iam_access_key resource generates an access key and secret key for the IAM user created in step 2.
 #4. The output blocks are used to print the access key and secret key to the console once the Terraform configuration is applied.
 
-#Terraform configuration file data to be saved in a tf file:
-provider "aws" {
-  region = "us-east-1"  # Change to your desired AWS region
-}
-
 resource "aws_iam_user" "example_user" {
   name = "example_user"
 }
@@ -43,6 +38,7 @@ output "access_key" {
 
 output "secret_key" {
   value = aws_iam_access_key.example_user_access_key.secret
+  sensitive = true
 }
 
 #==============================================================================
